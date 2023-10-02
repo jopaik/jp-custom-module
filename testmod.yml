@@ -1,11 +1,25 @@
 - name: test my new module
   hosts: localhost
   tasks:
-  - name: run the new module
+  - name: run the module
     my_test:
       name: 'hello'
-      new: false
     register: testout
   - name: dump test output
     debug:
       msg: '{{ testout }}'
+
+
+  - name: run the new module
+    my_test:
+      name: 'hello'
+      new: True
+    register: testout
+  - name: dump test output
+    debug:
+      msg: '{{ testout }}'
+
+  - name: fail my_test
+    my_test:
+      name: 'fail me'
+    ignore_errors: true
