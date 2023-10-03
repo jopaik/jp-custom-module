@@ -103,6 +103,7 @@ def run_module():
     # want to make any changes to the environment, just return the current
     # state with no modifications
     if module.check_mode:
+        result['original_message'] = module.params['name']
         module.exit_json(**result)
 
     # manipulate or modify the state as needed (this is going to be the

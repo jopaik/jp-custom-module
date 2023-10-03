@@ -1,6 +1,18 @@
 - name: test my new module
   hosts: localhost
   tasks:
+
+  - name: run the new module check_mode
+    my_test:
+      name: 'hello'
+      new: True
+    register: testout
+    check_mode: True
+
+  - name: dump test output check_mode
+    debug:
+      msg: '{{ testout }}'
+
   - name: run the module
     my_test:
       name: 'hello'
